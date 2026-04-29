@@ -10,10 +10,10 @@ $recent     = array_slice($tm->getByEtudiant((int)$user['id']), 0, 5);
 $menuDuJour = $mm->getMenuDuJour();
 $nbTickets  = $tm->countTicketsDuJour();
 $attente    = estimerAttente($nbTickets);
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="d-flex flex-grow-1" style="min-height:calc(100vh - 68px)">
-  <?php include APP_ROOT.'/views/sidebar.php'; ?>
+  <?php include APP_ROOT.'/views/layouts/sidebar.php'; ?>
   <div class="dashboard-main w-100">
 
     <!-- Hero -->
@@ -91,4 +91,4 @@ include APP_ROOT.'/views/layout.php';
 
   </div>
 </div>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

@@ -11,22 +11,26 @@ $historique=$mm->getHistorique(5);
 // IMAGES CARROUSEL — Remplacez les URLs par vos propres photos
 // ============================================================
 $slides=[
-  ['img'=>'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1400&q=80','title'=>'Bienvenue au Resto ESEN','desc'=>'Votre restaurant universitaire numérique.','cta_label'=>'Voir le menu','cta_url'=>APP_URL.'/views/public/menu.php'],
-  ['img'=>'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400&q=80','title'=>'Plats tunisiens chaque jour','desc'=>'Couscous, tajine, brik — servis avec soin.','cta_label'=>'S\'inscrire','cta_url'=>APP_URL.'/views/public/register.php'],
-  ['img'=>'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80','title'=>'Ticket numérique & QR Code','desc'=>'Payez D17 ou espèces — ticket instantané.','cta_label'=>'Créer un compte','cta_url'=>APP_URL.'/views/public/register.php'],
-];
+  ['img'=>APP_URL.'/public/assets/palt carroussel.jpg','title'=>'Bienvenue au Resto ESEN','desc'=>'Votre restaurant universitaire numérique.','cta_label'=>'Voir le menu','cta_url'=>APP_URL.'/views/public/menu.php'],
+  ['img'=>APP_URL.'/public/assets/carroussel1.jpg','title'=>'Plats tunisiens chaque jour','desc'=>'Couscous, tajine, brik — servis avec soin.','cta_label'=>'S\'inscrire','cta_url'=>APP_URL.'/views/public/register.php'],
+  ['img'=>APP_URL.'/public/assets/d17.png','title'=>'Ticket numérique & QR Code','desc'=>'Payez D17 ou espèces — ticket instantané.','cta_label'=>'Créer un compte','cta_url'=>APP_URL.'/views/public/register.php'],
+  ];
 // ============================================================
 // IMAGES GALERIE — Remplacez les URLs par vos propres photos
 // ============================================================
 $gallery=[
-  ['url'=>'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80','cap'=>'Plats variés'],
-  ['url'=>'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80','cap'=>'Cuisine fraîche'],
-  ['url'=>'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80','cap'=>'Notre salle'],
-  ['url'=>'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80','cap'=>'Déjeuner du jour'],
-  ['url'=>'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&q=80','cap'=>'Salade fraîche'],
-  ['url'=>'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=600&q=80','cap'=>'Desserts'],
+  ['url'=>APP_URL.'/public/assets/plat.jpg','cap'=>' yaourt'],
+  ['url'=>APP_URL.'/public/assets/plat1.jpg','cap'=>'Cuisine fraîche'],
+  ['url'=>APP_URL.'/public/assets/plat2.jpg','cap'=>'Espace convivial'],
+  ['url'=>APP_URL.'/public/assets/plat3.jpg','cap'=>'Service rapide'],
+  ['url'=>APP_URL.'/public/assets/plat4.jpg','cap'=>'Menu du jour'],
+  ['url'=>APP_URL.'/public/assets/plat5.jpg','cap'=>'escalopes panées'],
+  ['url'=>APP_URL.'/public/assets/plat6.jpg','cap'=>'lasagnes'],
+  ['url'=>APP_URL.'/public/assets/plat7.jpg','cap'=>'salade'],
+  ['url'=>APP_URL.'/public/assets/plat8.jpg','cap'=>'loubiaa'],
+  ['url'=>APP_URL.'/public/assets/plat9.jpg','cap'=>'Réservations faciles']
 ];
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <!-- CAROUSEL -->
 <section class="hero-carousel">
@@ -106,4 +110,4 @@ include APP_ROOT.'/views/layout.php';
   </div>
 </section>
 <?php endif; ?>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

@@ -4,12 +4,11 @@ if (isLoggedIn()) redirect('views/public/home.php');
 if ($_SERVER['REQUEST_METHOD']==='POST') { $ctrl=new AuthController(); $ctrl->register(); }
 $pageTitle='Inscription'; $bodyClass='auth-bg d-flex flex-column';
 $err=flash('error');
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="flex-grow-1 d-flex align-items-center justify-content-center py-5">
   <div class="auth-card" style="width:100%;max-width:490px">
     <div class="text-center mb-4">
-      <div class="auth-logo-ring">🎓</div>
       <h4 class="mb-1">Créer un compte</h4>
       <p class="text-muted small">Rejoignez le Resto ESEN en tant qu'étudiant</p>
     </div>
@@ -54,4 +53,4 @@ include APP_ROOT.'/views/layout.php';
     <p class="text-center small text-muted">Déjà inscrit ? <a href="<?=APP_URL?>/views/public/login.php" class="fw-bold">Se connecter</a></p>
   </div>
 </div>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

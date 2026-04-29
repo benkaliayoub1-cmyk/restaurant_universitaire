@@ -7,10 +7,10 @@ $ticket=$tm->getById($id);
 if (!$ticket||(int)$ticket['id_etudiant']!==(int)$_SESSION['user_id']) redirect('views/student/dashboard.php');
 $pageTitle='Ticket #'.$id; $activeNav='dashboard';
 $suc=flash('success');
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="d-flex flex-grow-1" style="min-height:calc(100vh - 68px)">
-  <?php include APP_ROOT.'/views/sidebar.php'; ?>
+  <?php include APP_ROOT.'/views/layouts/sidebar.php'; ?>
   <div class="dashboard-main w-100">
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
       <div><h2 class="mb-1">Ticket #<?=$id?></h2><p class="text-muted small mb-0">Réservé le <?=date('d/m/Y à H:i',strtotime($ticket['dateAchat']))?></p></div>
@@ -68,4 +68,4 @@ include APP_ROOT.'/views/layout.php';
     </div>
   </div>
 </div>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

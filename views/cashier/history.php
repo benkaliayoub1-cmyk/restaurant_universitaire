@@ -5,10 +5,10 @@ $tm=new TicketModel();
 $validations=$tm->getValidationsDuJour((int)$_SESSION['user_id']);
 $totalMontant=array_sum(array_column($validations,'montantTotal'));
 $pageTitle='Validations du jour'; $activeNav='';
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="d-flex flex-grow-1" style="min-height:calc(100vh - 68px)">
-  <?php include APP_ROOT.'/views/sidebar.php'; ?>
+  <?php include APP_ROOT.'/views/layouts/sidebar.php'; ?>
   <div class="dashboard-main w-100">
     <div class="page-hero"><h2 class="mb-1"><i class="bi bi-list-check me-2"></i>Validations du Jour</h2><p class="opacity-75 mb-0 small"><?=date('d/m/Y')?> — <?=count($validations)?> validation(s)</p></div>
     <?php if(empty($validations)): ?>
@@ -44,4 +44,4 @@ include APP_ROOT.'/views/layout.php';
     <?php endif; ?>
   </div>
 </div>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

@@ -6,10 +6,10 @@ $user=currentUser();
 $tickets=$tm->getByEtudiant((int)$user['id']);
 $stats=$tm->getStatsEtudiant((int)$user['id']);
 $pageTitle='Mes tickets'; $activeNav='dashboard';
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="d-flex flex-grow-1" style="min-height:calc(100vh - 68px)">
-  <?php include APP_ROOT.'/views/sidebar.php'; ?>
+  <?php include APP_ROOT.'/views/layouts/sidebar.php'; ?>
   <div class="dashboard-main w-100">
     <div class="page-hero"><h2 class="mb-1"><i class="bi bi-collection me-2"></i>Mes Tickets</h2><p class="opacity-75 mb-0 small"><?=count($tickets)?> ticket(s)</p></div>
     <div class="row g-3 mb-4">
@@ -42,4 +42,4 @@ include APP_ROOT.'/views/layout.php';
     <?php endif; ?>
   </div>
 </div>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

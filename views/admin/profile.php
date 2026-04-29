@@ -8,10 +8,10 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
 }
 $user=currentUser();
 $pageTitle='Mon profil Admin'; $activeNav='admin';
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="d-flex flex-grow-1" style="min-height:calc(100vh - 68px)">
-  <?php include APP_ROOT.'/views/sidebar.php'; ?>
+  <?php include APP_ROOT.'/views/layouts/sidebar.php'; ?>
   <div class="dashboard-main w-100">
     <div class="page-hero"><h2 class="mb-1"><i class="bi bi-person-circle me-2"></i>Mon Profil Admin</h2><p class="opacity-75 mb-0 small"><?=h($user['email']??'')?></p></div>
     <?php include APP_ROOT.'/views/partials/alerts.php'; ?>
@@ -51,4 +51,4 @@ include APP_ROOT.'/views/layout.php';
     </div>
   </div>
 </div>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

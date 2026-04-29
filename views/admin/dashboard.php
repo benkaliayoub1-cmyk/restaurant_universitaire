@@ -7,10 +7,10 @@ $stats       = $tm->getStatsAdmin();
 $nbEtudiants = $um->countEtudiants();
 $menuDuJour  = $mm->getMenuDuJour();
 $pageTitle   = 'Tableau de bord Admin'; $activeNav = 'admin';
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="d-flex flex-grow-1" style="min-height:calc(100vh - 68px)">
-  <?php include APP_ROOT.'/views/sidebar.php'; ?>
+  <?php include APP_ROOT.'/views/layouts/sidebar.php'; ?>
   <div class="dashboard-main w-100">
 
     <div class="page-hero d-flex justify-content-between align-items-center flex-wrap gap-2">
@@ -85,4 +85,4 @@ include APP_ROOT.'/views/layout.php';
 
   </div>
 </div>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

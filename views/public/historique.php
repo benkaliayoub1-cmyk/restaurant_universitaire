@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../index.php';
 $pageTitle='Historique'; $activeNav='historique';
 $historique=(new MenuModel())->getHistorique(60);
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <section class="py-5">
   <div class="container">
@@ -30,4 +30,4 @@ include APP_ROOT.'/views/layout.php';
     <?php endif; ?>
   </div>
 </section>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

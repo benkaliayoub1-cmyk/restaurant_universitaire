@@ -10,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
 }
 $users=$um->getAll();
 $pageTitle='Utilisateurs'; $activeNav='admin';
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="d-flex flex-grow-1" style="min-height:calc(100vh - 68px)">
-  <?php include APP_ROOT.'/views/sidebar.php'; ?>
+  <?php include APP_ROOT.'/views/layouts/sidebar.php'; ?>
   <div class="dashboard-main w-100">
     <div class="page-hero"><h2 class="mb-1"><i class="bi bi-people me-2"></i>Gestion des Utilisateurs</h2><p class="opacity-75 mb-0 small"><?=count($users)?> utilisateurs</p></div>
     <?php include APP_ROOT.'/views/partials/alerts.php'; ?>
@@ -72,4 +72,4 @@ function editUser(id){const r=document.getElementById('row-u-'+id);r.querySelect
 function cancelUser(id){const r=document.getElementById('row-u-'+id);r.querySelectorAll('.view-mode').forEach(e=>e.classList.remove('d-none'));r.querySelectorAll('.edit-mode').forEach(e=>e.classList.add('d-none'));}
 function saveUser(id){const r=document.getElementById('row-u-'+id);const f=document.getElementById('uf-'+id);f.querySelector('.un').value=r.querySelector('input[type="text"].edit-mode').value;f.querySelector('.ue').value=r.querySelector('input[type="email"].edit-mode').value;f.submit();}
 </script>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

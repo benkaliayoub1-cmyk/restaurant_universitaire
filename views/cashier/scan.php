@@ -6,10 +6,10 @@ if ($_SERVER['REQUEST_METHOD']==='POST') { $ctrl=new TicketController(); $ctrl->
 $scanResult=$_SESSION['scan_result']??null;
 unset($_SESSION['scan_result']);
 $pageTitle='Scanner un ticket'; $activeNav='';
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="d-flex flex-grow-1" style="min-height:calc(100vh - 68px)">
-  <?php include APP_ROOT.'/views/sidebar.php'; ?>
+  <?php include APP_ROOT.'/views/layouts/sidebar.php'; ?>
   <div class="dashboard-main w-100">
     <div class="page-hero"><h2 class="mb-1"><i class="bi bi-qr-code-scan me-2"></i>Scanner un Ticket</h2><p class="opacity-75 mb-0 small"><?=date('d/m/Y')?> — Valider l'accès au restaurant</p></div>
     <?php include APP_ROOT.'/views/partials/alerts.php'; ?>
@@ -77,4 +77,4 @@ document.getElementById('qr-input').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); document.getElementById('scan-form').submit(); }
 });
 </script>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

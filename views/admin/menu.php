@@ -10,10 +10,10 @@ $repas      = $mm->getAllRepas(200, 0);
 $historique = $mm->getHistorique(10);
 $menuDuJour = $mm->getMenuDuJour();  // pour vérifier si menu existe déjà
 $pageTitle  = 'Saisir le menu'; $activeNav = 'admin';
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="d-flex flex-grow-1" style="min-height:calc(100vh - 68px)">
-  <?php include APP_ROOT.'/views/sidebar.php'; ?>
+  <?php include APP_ROOT.'/views/layouts/sidebar.php'; ?>
   <div class="dashboard-main w-100">
     <div class="page-hero">
       <h2 class="mb-1"><i class="bi bi-journal-plus me-2"></i>Saisir le Menu du Jour</h2>
@@ -126,4 +126,4 @@ include APP_ROOT.'/views/layout.php';
     </div>
   </div>
 </div>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

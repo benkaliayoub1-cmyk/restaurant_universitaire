@@ -17,10 +17,10 @@ $attente     = estimerAttente($nbTickets);
 $dejaReserve = $menuDuJour && $tm->aDejaTicketAujourdhui((int)$_SESSION['user_id']);
 $pageTitle   = 'Réserver'; $activeNav = 'dashboard';
 $err         = flash('error');
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="d-flex flex-grow-1" style="min-height:calc(100vh - 68px)">
-  <?php include APP_ROOT.'/views/sidebar.php'; ?>
+  <?php include APP_ROOT.'/views/layouts/sidebar.php'; ?>
   <div class="dashboard-main w-100">
 
     <div class="page-hero">
@@ -134,4 +134,4 @@ document.querySelectorAll('input[name="mode_paiement"]').forEach(r => {
   });
 });
 </script>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

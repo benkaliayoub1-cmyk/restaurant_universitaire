@@ -9,7 +9,7 @@ $menuDuJour = $mm->getMenuByDate($date);
 $nbTickets  = $tm->countTicketsDuJour();
 $attente    = estimerAttente($nbTickets);
 $isToday    = ($date === date('Y-m-d'));
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <section class="py-5">
   <div class="container" style="max-width:740px">
@@ -61,4 +61,4 @@ include APP_ROOT.'/views/layout.php';
     <?php endif; ?>
   </div>
 </section>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

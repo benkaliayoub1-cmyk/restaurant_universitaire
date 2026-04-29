@@ -1,11 +1,5 @@
 <?php
-// ============================================================
-//  index.php — Front Controller / Bootstrap unique
-//  Toutes les vues incluent ce fichier via :
-//    require_once __DIR__ . '/../../index.php';   (depuis views/*/  )
-//    require_once __DIR__ . '/../index.php';       (depuis views/    )
-//    require_once __DIR__ . '/index.php';          (depuis racine    )
-// ============================================================
+
 
 // Session unique
 if (session_status() === PHP_SESSION_NONE) {

@@ -4,6 +4,11 @@
    ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
+.brand-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px; /* Ajoute un espace entre l'image et le texte */
+}
 :root {
   --c-primary:#C8553D; --c-primary-d:#A63D29; --c-primary-l:#E8765A;
   --c-accent:#D4A853;  --c-green:#3A5A40;     --c-green-l:#588157;

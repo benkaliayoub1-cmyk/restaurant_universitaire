@@ -5,12 +5,11 @@ if ($_SERVER['REQUEST_METHOD']==='POST') { $ctrl=new AuthController(); $ctrl->lo
 $pageTitle='Connexion'; $activeNav='login';
 $bodyClass='auth-bg d-flex flex-column';
 $err=flash('error'); $suc=flash('success');
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="flex-grow-1 d-flex align-items-center justify-content-center py-5">
   <div class="auth-card" style="width:100%;max-width:430px">
     <div class="text-center mb-4">
-      <div class="auth-logo-ring">🍽️</div>
       <h4 class="mb-1">Connexion</h4>
       <p class="text-muted small">Accédez à votre espace Resto ESEN</p>
     </div>
@@ -45,4 +44,4 @@ include APP_ROOT.'/views/layout.php';
     </div>
   </div>
 </div>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

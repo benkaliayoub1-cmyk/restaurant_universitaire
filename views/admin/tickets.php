@@ -5,10 +5,10 @@ $tm=new TicketModel(); $tm->expirerTickets();
 $tickets=$tm->getAll(100);
 $stats=$tm->getStatsAdmin();
 $pageTitle='Tickets vendus'; $activeNav='admin';
-include APP_ROOT.'/views/layout.php';
+include APP_ROOT.'/views/layouts/header.php';
 ?>
 <div class="d-flex flex-grow-1" style="min-height:calc(100vh - 68px)">
-  <?php include APP_ROOT.'/views/sidebar.php'; ?>
+  <?php include APP_ROOT.'/views/layouts/sidebar.php'; ?>
   <div class="dashboard-main w-100">
     <div class="page-hero"><h2 class="mb-1"><i class="bi bi-ticket-detailed me-2"></i>Tickets Vendus</h2><p class="opacity-75 mb-0 small"><?=count($tickets)?> tickets chargés</p></div>
     <div class="row g-3 mb-4">
@@ -48,4 +48,4 @@ include APP_ROOT.'/views/layout.php';
     </div>
   </div>
 </div>
-<?php include APP_ROOT.'/views/footer.php'; ?>
+<?php include APP_ROOT.'/views/layouts/footer.php'; ?>

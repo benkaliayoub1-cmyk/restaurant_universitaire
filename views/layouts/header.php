@@ -1,9 +1,4 @@
 <?php
-// ============================================================
-//  views/layout.php — Layout Bootstrap partagé
-//  Chaque vue l'inclut en premier après require_once index.php
-//  Variables : $pageTitle, $activeNav
-// ============================================================
 $user = currentUser();
 $role = $_SESSION['role'] ?? '';
 ?>
@@ -24,7 +19,8 @@ $role = $_SESSION['role'] ?? '';
 <nav class="navbar navbar-expand-lg navbar-resto sticky-top">
   <div class="container-fluid px-3">
     <a class="navbar-brand-resto" href="<?= APP_URL ?>/views/public/home.php">
-      <div class="brand-icon">🍽️</div>Resto <span>ESEN</span>
+  <img src="<?= APP_URL ?>/public/assets/logo.webp" alt="Logo" class="brand-icon" style="height: 40px; width: auto;"> 
+         Resto <span>ESEN</span>
     </a>
     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
       <span class="navbar-toggler-icon"></span>
