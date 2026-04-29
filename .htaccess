@@ -1,0 +1,17 @@
+Options -Indexes
+
+# Protéger les fichiers sensibles
+<FilesMatch "\.(sql|md|log|env)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+RewriteEngine On
+
+# Ne pas réécrire les ressources statiques existantes
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Tout le reste → index.php
+RewriteRule ^(.*)$ index.php [QSA,L]
