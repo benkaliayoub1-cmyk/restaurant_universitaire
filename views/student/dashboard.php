@@ -19,7 +19,7 @@ include APP_ROOT.'/views/layouts/header.php';
     <!-- Hero -->
     <div class="page-hero d-flex justify-content-between align-items-center flex-wrap gap-3">
       <div>
-        <h2 class="mb-1">Bonjour, <?= h(explode(' ', $user['nom'] ?? '')[0]) ?> 👋</h2>
+        <h2 class="mb-1">Bonjour, <?= h(explode(' ', $user['nom'] ?? '')[0]) ?> </h2>
         <p class="opacity-75 mb-0 small"><?= date('l d F Y') ?></p>
       </div>
       <?php if ($menuDuJour): ?>

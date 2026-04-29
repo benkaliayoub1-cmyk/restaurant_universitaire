@@ -1,7 +1,5 @@
 <?php
-// ============================================================
-//  controllers/TicketController.php
-// ============================================================
+
 class TicketController {
     private TicketModel $tm;
     private MenuModel   $mm;

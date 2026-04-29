@@ -1,7 +1,5 @@
 <?php
-// ============================================================
-//  controllers/AuthController.php
-// ============================================================
+
 class AuthController {
     private UserModel $um;
 

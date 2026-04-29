@@ -1,9 +1,5 @@
 <?php
-// ============================================================
-//  models/TicketModel.php
-//  Toute la logique métier est en PHP (pas de triggers SQL)
-//  Évite l'erreur MySQL 1442 (trigger récursif)
-// ============================================================
+
 class TicketModel {
     private PDO $db;
 
@@ -58,6 +54,62 @@ class TicketModel {
         $s->execute([$etudiantId]);
         return (int)$s->fetchColumn() > 0;
     }
+    /*
+ * Recette journalière pour le graphique CanvasJS
+ * Retourne un tableau [timestamp_ms => montant] pour les 30 derniers jours
+ */
+public function getRecettesParJour(int $jours = 30): array {
+    $s = $this->db->prepare(
+        "SELECT m.dateMenu, SUM(t.montantTotal) AS recette
+         FROM ticket t
+         JOIN menu m ON m.id_menu = t.id_menu
+         WHERE t.status != 'annule'
+           AND m.dateMenu >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+         GROUP BY m.dateMenu
+         ORDER BY m.dateMenu ASC"
+    );
+    $s->execute([$jours]);
+    $rows = $s->fetchAll();
+
+    $dataPoints = [];
+    foreach ($rows as $row) {
+        // Convertir la date en timestamp millisecondes (format CanvasJS)
+        $ts = strtotime($row['dateMenu']) * 1000;
+        $dataPoints[] = [
+            'x' => $ts,
+            'y' => (float)$row['recette']
+        ];
+    }
+    return $dataPoints;
+}
+/**
+ * Données pour le donut chart : Tickets utilisés vs non utilisés du jour
+ * Utilisé vs Non utilisé (valide = réservé mais pas encore scanné)
+ */
+public function getStatsValidationDuJour(): array {
+    $s = $this->db->query(
+        "SELECT
+            SUM(CASE WHEN t.status = 'utilise' THEN 1 ELSE 0 END) AS utilises,
+            SUM(CASE WHEN t.status = 'valide'  THEN 1 ELSE 0 END) AS valides
+         FROM ticket t
+         JOIN menu m ON m.id_menu = t.id_menu
+         WHERE m.dateMenu = CURDATE()"
+    );
+    $row = $s->fetch();
+
+    $utilises = (int)($row['utilises'] ?? 0);
+    $valides  = (int)($row['valides']  ?? 0);
+
+    return [
+        'utilises'    => $utilises,
+        'non_utilises'=> $valides,
+        'total'       => $utilises + $valides,
+        'dataPoints'  => [
+            ['y' => $utilises, 'name' => 'Entrées validées',     'color' => '#3A5A40'],
+            ['y' => $valides,  'name' => 'Réservés non scannés', 'color' => '#C8553D'],
+        ]
+    ];
+}
 
     public function getById(int $id): ?array {
         $s = $this->db->prepare(
@@ -196,3 +248,4 @@ class TicketModel {
         return $s->fetchAll();
     }
 }
+

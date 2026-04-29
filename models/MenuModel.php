@@ -1,9 +1,5 @@
 <?php
-// ============================================================
-//  models/MenuModel.php
-//  Prix affiché = MENU_PRIX_FIXE (0.200 DT) — toujours fixe
-//  Les prix individuels des repas ne sont PAS affichés
-// ============================================================
+
 class MenuModel {
     private PDO $db;
 
@@ -11,7 +7,7 @@ class MenuModel {
         $this->db = Database::getInstance()->getPDO();
     }
 
-    /** Menu d'une date (repas sans prix individuels) */
+    /** Menu d'une date */
     public function getMenuByDate(string $date): ?array {
         $s = $this->db->prepare("SELECT * FROM menu WHERE dateMenu=? LIMIT 1");
         $s->execute([$date]);

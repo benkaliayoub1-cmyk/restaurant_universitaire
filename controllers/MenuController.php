@@ -1,7 +1,5 @@
 <?php
-// ============================================================
-//  controllers/MenuController.php
-// ============================================================
+
 class MenuController {
     private MenuModel $mm;
 

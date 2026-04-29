@@ -7,17 +7,13 @@ $menuDuJour=$mm->getMenuDuJour();
 $nbTickets=$tm->countTicketsDuJour();
 $attente=estimerAttente($nbTickets);
 $historique=$mm->getHistorique(5);
-// ============================================================
-// IMAGES CARROUSEL — Remplacez les URLs par vos propres photos
-// ============================================================
+
 $slides=[
   ['img'=>APP_URL.'/public/assets/palt carroussel.jpg','title'=>'Bienvenue au Resto ESEN','desc'=>'Votre restaurant universitaire numérique.','cta_label'=>'Voir le menu','cta_url'=>APP_URL.'/views/public/menu.php'],
   ['img'=>APP_URL.'/public/assets/carroussel1.jpg','title'=>'Plats tunisiens chaque jour','desc'=>'Couscous, tajine, brik — servis avec soin.','cta_label'=>'S\'inscrire','cta_url'=>APP_URL.'/views/public/register.php'],
   ['img'=>APP_URL.'/public/assets/d17.png','title'=>'Ticket numérique & QR Code','desc'=>'Payez D17 ou espèces — ticket instantané.','cta_label'=>'Créer un compte','cta_url'=>APP_URL.'/views/public/register.php'],
   ];
-// ============================================================
-// IMAGES GALERIE — Remplacez les URLs par vos propres photos
-// ============================================================
+
 $gallery=[
   ['url'=>APP_URL.'/public/assets/plat.jpg','cap'=>' yaourt'],
   ['url'=>APP_URL.'/public/assets/plat1.jpg','cap'=>'Cuisine fraîche'],

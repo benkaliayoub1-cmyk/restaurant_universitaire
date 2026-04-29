@@ -1,7 +1,5 @@
 <?php
-// ============================================================
-//  config/helpers.php — Fonctions utilitaires globales
-// ============================================================
+
 
 function redirect(string $path): void {
     // Éviter les doubles slashes
@@ -61,9 +59,9 @@ function formatPrix(float $prix): string {
     return number_format($prix, 3, '.', '') . ' DT';
 }
 
-/**
- * Estimation du temps d'attente — 100% PHP, pas de trigger SQL
- */
+
+ // Estimation du temps d'attente 
+ 
 function estimerAttente(int $nb): string {
     if ($nb === 0)  return '< 5 min';
     $minutes = (int)ceil($nb / WAIT_BATCH_SIZE) * WAIT_MINUTES;
@@ -75,9 +73,7 @@ function estimerAttente(int $nb): string {
     return "~{$minutes} min";
 }
 
-/**
- * Pagination helper
- */
+ // Pagination helper
 function paginate(int $total, int $page, int $perPage = ITEMS_PER_PAGE): array {
     $totalPages = max(1, (int)ceil($total / $perPage));
     $page       = max(1, min($page, $totalPages));

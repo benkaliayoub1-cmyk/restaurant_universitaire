@@ -1,7 +1,5 @@
 <?php
-// ============================================================
-//  controllers/UserController.php
-// ============================================================
+
 class UserController {
     private UserModel $um;
 
