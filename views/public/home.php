@@ -66,24 +66,65 @@ include APP_ROOT.'/views/layouts/header.php';
         <?php endif; ?>
       </div>
       <div class="col-lg-4">
+        <?php $statsDonut = $tm->getStatsValidationDuJour(); ?>
         <div class="card border-0 shadow-sm mb-3">
-          <div class="card-header bg-white fw-bold small"><i class="bi bi-bar-chart me-2 text-primary"></i>En chiffres</div>
+          <div class="card-header bg-white fw-bold small">
+            <i class="bi bi-pie-chart me-2 text-primary"></i>Activité du jour
+          </div>
           <div class="card-body p-3">
-            <div class="d-flex justify-content-between align-items-center rounded p-2 mb-2" style="background:var(--c-cream)"><span class="small">🎫 Réservations aujourd'hui</span><strong class="text-primary"><?=$nbTickets?></strong></div>
-            <div class="d-flex justify-content-between align-items-center rounded p-2 mb-2" style="background:var(--c-cream)"><span class="small">⏱️ Temps d'attente</span><strong style="color:var(--c-accent)"><?=$attente?></strong></div>
-            <div class="d-flex justify-content-between align-items-center rounded p-2" style="background:var(--c-cream)"><span class="small">💰 Prix du menu</span><strong class="text-success"><?=formatPrix(MENU_PRIX_FIXE)?></strong></div>
+
+            <!-- Donut chart -->
+            <div style="position:relative; height:160px; display:flex; align-items:center; justify-content:center;">
+              <canvas id="donutHome"></canvas>
+              <div style="position:absolute; text-align:center; pointer-events:none;">
+                <div style="font-size:1.4rem; font-weight:700; color:var(--c-primary)"><?= $statsDonut['total'] ?></div>
+                <div style="font-size:.65rem; color:#888; line-height:1.1">tickets<br>today</div>
+              </div>
+            </div>
+
+            <!-- Légende manuelle propre -->
+            <div class="d-flex justify-content-center gap-3 mb-3" style="font-size:.75rem">
+              <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#3A5A40;margin-right:4px"></span>Validés (<?= $statsDonut['utilises'] ?>)</span>
+              <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#C8553D;margin-right:4px"></span>En attente (<?= $statsDonut['non_utilises'] ?>)</span>
+            </div>
+
+            <!-- KPIs -->
+            <div class="d-flex justify-content-between align-items-center rounded p-2 mb-2" style="background:var(--c-cream)">
+              <span class="small">🎫 Réservations</span>
+              <strong class="text-primary"><?= $nbTickets ?></strong>
+            </div>
+            <div class="d-flex justify-content-between align-items-center rounded p-2 mb-2" style="background:var(--c-cream)">
+              <span class="small">⏱️ Attente estimée</span>
+              <strong style="color:var(--c-accent)"><?= $attente ?></strong>
+            </div>
+            <div class="d-flex justify-content-between align-items-center rounded p-2" style="background:var(--c-cream)">
+              <span class="small">💰 Prix du menu</span>
+              <strong class="text-success"><?= formatPrix(MENU_PRIX_FIXE) ?></strong>
+            </div>
+
           </div>
         </div>
+
+        <!-- Menus récents -->
         <div class="card border-0 shadow-sm">
           <div class="card-header bg-white fw-bold small"><i class="bi bi-clock-history me-2 text-primary"></i>Menus récents</div>
           <?php foreach($historique as $m): ?>
             <div class="d-flex justify-content-between align-items-center px-3 py-2" style="border-bottom:1px solid var(--c-border)">
-              <div><div class="fw-semibold small"><?=date('d/m/Y',strtotime($m['dateMenu']))?></div><div class="text-muted" style="font-size:.72rem"><?=$m['nb_tickets']?> tickets</div></div>
-              <span class="fw-bold small text-primary"><?=formatPrix(MENU_PRIX_FIXE)?></span>
+              <div>
+                <div class="fw-semibold small"><?= date('d/m/Y', strtotime($m['dateMenu'])) ?></div>
+                <div class="text-muted" style="font-size:.72rem"><?= $m['nb_tickets'] ?> tickets</div>
+              </div>
+              <span class="fw-bold small text-primary"><?= formatPrix(MENU_PRIX_FIXE) ?></span>
             </div>
           <?php endforeach; ?>
-          <div class="card-footer bg-white"><a href="<?=APP_URL?>/views/public/historique.php" class="btn btn-sm btn-outline-primary w-100">Voir tout →</a></div>
+          <div class="card-footer bg-white">
+            <a href="<?=APP_URL?>/views/public/historique.php" class="btn btn-sm btn-outline-primary w-100">Voir tout →</a>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+       
       </div>
     </div>
   </div>
@@ -106,4 +147,31 @@ include APP_ROOT.'/views/layouts/header.php';
   </div>
 </section>
 <?php endif; ?>
+<!-- Chart.js Donut — Activité du jour -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+(function(){
+  var utilises = <?= (int)($statsDonut['utilises']    ?? 0) ?>;
+  var valides  = <?= (int)($statsDonut['non_utilises'] ?? 0) ?>;
+  var ctx = document.getElementById('donutHome');
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Validés', 'En attente'],
+      datasets: [{
+        data: [utilises, valides],
+        backgroundColor: ['#3A5A40', '#C8553D'],
+        borderWidth: 0,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      cutout: '72%',
+      plugins: { legend: { display: false } },
+      layout: { padding: 8 }
+    }
+  });
+})();
+</script>
 <?php include APP_ROOT.'/views/layouts/footer.php'; ?>

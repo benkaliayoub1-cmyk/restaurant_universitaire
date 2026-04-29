@@ -1,9 +1,6 @@
 <?php
 // ============================================================
-//  views/partials/menu_card.php — Carte menu réutilisable
 //  Accepte $menuDuJour OU $menu (priorité à $menuDuJour)
-//  IMPORTANT : Prix individuels des repas NON affichés
-//  Seul le prix fixe total (MENU_PRIX_FIXE) est visible
 // ============================================================
 $_menuData = $menuDuJour ?? $menu ?? null;
 if (!$_menuData) return;

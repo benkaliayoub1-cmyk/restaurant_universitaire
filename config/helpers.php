@@ -63,14 +63,17 @@ function formatPrix(float $prix): string {
  // Estimation du temps d'attente 
  
 function estimerAttente(int $nb): string {
-    if ($nb === 0)  return '< 5 min';
+    if ($nb === 0) return '< 1 min';
+    // 1 batch = WAIT_BATCH_SIZE personnes = WAIT_MINUTES minutes
+    // ex : 1-10 → 5 min, 11-20 → 10 min, etc.
     $minutes = (int)ceil($nb / WAIT_BATCH_SIZE) * WAIT_MINUTES;
-    if ($minutes <= 5)  return '< 5 min';
-    if ($minutes <= 10) return '< 10 min';
+    if ($minutes <= 5)  return '~5 min';
+    if ($minutes <= 10) return '~10 min';
     if ($minutes <= 20) return '~20 min';
     if ($minutes <= 30) return '~30 min';
-    if ($minutes > 60)  return '> 1h';
-    return "~{$minutes} min";
+    if ($minutes <= 45) return '~45 min';
+    if ($minutes <= 60) return '~1h';
+    return '> 1h';
 }
 
  // Pagination helper
