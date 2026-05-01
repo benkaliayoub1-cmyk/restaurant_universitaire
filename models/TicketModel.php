@@ -8,8 +8,8 @@ class TicketModel {
     }
 
     /**
-     * Expirer les tickets dont le menu est passé — LOGIQUE PHP
-     * Appelée explicitement depuis les pages (pas de trigger SQL)
+     * Expirer les tickets dont le menu est passé — 
+     * Appelée explicitement depuis les pages 
      */
     public function expirerTickets(): void {
         $this->db->exec(
@@ -22,7 +22,7 @@ class TicketModel {
     }
 
     /**
-     * Créer un ticket — montant toujours = MENU_PRIX_FIXE
+     * Créer un ticket 
      */
     public function creerTicket(int $etudiantId, int $menuId, string $mode = 'especes', string $transD17 = ''): ?array {
         // Vérifier que le menu est pour aujourd'hui
@@ -33,6 +33,8 @@ class TicketModel {
 
         // Vérifier pas de double réservation aujourd'hui
         if ($this->aDejaTicketAujourdhui($etudiantId)) return null;
+
+        //generer un QR code unique (format : 16 chars hex + id etudiant + timestamp)
 
         $qr = strtoupper(bin2hex(random_bytes(8))) . '-' . $etudiantId . '-' . time();
 
@@ -203,7 +205,7 @@ public function getStatsValidationDuJour(): array {
         return $s->fetchAll();
     }
 
-    /** Stats admin calculées en PHP */
+    /** Stats admin calculées */
     public function getStatsAdmin(): array {
         $today = date('Y-m-d');
         $s = $this->db->prepare(
