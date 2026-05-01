@@ -40,9 +40,9 @@ $role = $_SESSION['role'] ?? '';
             <li class="nav-item"><a class="nav-link" href="<?= APP_URL ?>/views/cashier/scan.php"><i class="bi bi-qr-code-scan me-1"></i>Scanner</a></li>
           <?php endif; ?>
           <li class="nav-item">
-            <a class="nav-link" href="<?= APP_URL ?>/views/public/logout.php" style="color:rgba(255,255,255,.45)!important">
-              <i class="bi bi-box-arrow-right me-1"></i>Déconnexion
-            </a>
+            <a class="nav-link" href="#" onclick="confirmerDeconnexion(event)" style="color:rgba(255,255,255,.45)!important">
+                <i class="bi bi-box-arrow-right me-1"></i>Déconnexion
+             </a>
           </li>
         <?php else: ?>
           <li class="nav-item"><a class="nav-link <?= ($activeNav??'')==='login'?'active':'' ?>" href="<?= APP_URL ?>/views/public/login.php"><i class="bi bi-person me-1"></i>Connexion</a></li>

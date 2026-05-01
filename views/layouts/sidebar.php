@@ -72,10 +72,17 @@ $_initial = strtoupper(mb_substr($_u['nom'] ?? 'U', 0, 1));
     <?php foreach ($_cfg['sections'] as $sec): ?>
       <div class="s-section"><?= $sec['titre'] ?></div>
       <?php foreach ($sec['liens'] as $lien): ?>
-        <a href="<?= APP_URL ?>/<?= $lien['url'] ?>"
-           class="s-link <?= $_p === $lien['file'] ? 'active' : '' ?>">
-          <i class="bi <?= $lien['icon'] ?> si"></i> <?= $lien['nom'] ?>
-        </a>
+        <?php if ($lien['file'] === 'logout.php'): ?>
+  <a href="#" onclick="confirmerDeconnexion(event)"
+     class="s-link <?= $_p === $lien['file'] ? 'active' : '' ?>">
+    <i class="bi <?= $lien['icon'] ?> si"></i> <?= $lien['nom'] ?>
+  </a>
+        <?php else: ?>
+  <a href="<?= APP_URL ?>/<?= $lien['url'] ?>"
+     class="s-link <?= $_p === $lien['file'] ? 'active' : '' ?>">
+    <i class="bi <?= $lien['icon'] ?> si"></i> <?= $lien['nom'] ?>
+  </a> 
+        <?php endif; ?>
       <?php endforeach; ?>
     <?php endforeach; ?>
   </nav>
