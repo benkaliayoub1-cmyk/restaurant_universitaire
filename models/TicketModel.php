@@ -249,5 +249,32 @@ public function getStatsValidationDuJour(): array {
         $s->execute([$caissierId]);
         return $s->fetchAll();
     }
-}
+/**
+     * Dépenses par jour de CET étudiant (30 derniers jours)
+     * Retourne un tableau de dataPoints pour CanvasJS
+     */
+    public function getDepensesEtudiantParJour(int $etudiantId, int $jours = 30): array {
+        $s = $this->db->prepare(
+            "SELECT m.dateMenu, SUM(t.montantTotal) AS total
+             FROM ticket t
+             JOIN menu m ON m.id_menu = t.id_menu
+             WHERE t.id_etudiant = ?
+               AND t.status != 'annule'
+               AND m.dateMenu >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+             GROUP BY m.dateMenu
+             ORDER BY m.dateMenu ASC"
+        );
+        $s->execute([$etudiantId, $jours]);
+        $rows = $s->fetchAll();
+
+        $dataPoints = [];
+        foreach ($rows as $row) {
+            $dataPoints[] = [
+                'x' => strtotime($row['dateMenu']) * 1000, // timestamp ms pour CanvasJS
+                'y' => round((float)$row['total'], 3)
+            ];
+        }
+        return $dataPoints;
+    }
+    }
 
