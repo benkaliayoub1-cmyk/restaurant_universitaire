@@ -204,6 +204,27 @@ public function getStatsValidationDuJour(): array {
         $s->execute([$limit]);
         return $s->fetchAll();
     }
+    /** Compte total de tickets pour la pagination */
+    public function countAll(): int {
+        return (int)$this->db->query(
+            "SELECT COUNT(*) FROM ticket"
+        )->fetchColumn();
+    }
+
+    /** Tickets paginés — LIMIT + OFFSET */
+    public function getAllPagine(int $limite, int $offset): array {
+        $s = $this->db->prepare(
+            "SELECT t.*, m.dateMenu, m.typeMenu, u.nom AS etudiant_nom, e.matricule
+             FROM ticket t
+             JOIN menu m        ON m.id_menu  = t.id_menu
+             JOIN etudiant e    ON e.id        = t.id_etudiant
+             JOIN utilisateur u ON u.id        = e.id
+             ORDER BY t.dateAchat DESC
+             LIMIT ? OFFSET ?"
+        );
+        $s->execute([$limite, $offset]);
+        return $s->fetchAll();
+    }
 
     /** Stats admin calculées */
     public function getStatsAdmin(): array {

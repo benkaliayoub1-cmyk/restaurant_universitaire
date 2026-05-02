@@ -1,8 +1,6 @@
 -- ============================================================
 --  Système de Restauration Numérique — Schéma SQL
 --  Base de données : resto_univer
---  Contenu : CREATE TABLE + INSERT données initiales uniquement
--- ============================================================
 
 CREATE DATABASE IF NOT EXISTS resto_univer
   CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
