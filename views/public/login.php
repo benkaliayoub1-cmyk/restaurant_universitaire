@@ -36,12 +36,6 @@ include APP_ROOT.'/views/layouts/header.php';
     </form>
     <hr class="my-3">
     <p class="text-center small text-muted mb-3">Pas de compte ? <a href="<?=APP_URL?>/views/public/register.php" class="fw-bold">S'inscrire</a></p>
-    <div class="rounded p-3 small text-muted" style="background:var(--c-cream)">
-      <strong>Comptes de test :</strong><br>
-      Admin    : admin@esen.tn / admin123<br>
-      Caissier : caissier@esen.tn / caissier123<br>
-      Étudiant : ahmed@esen.tn / etudiant123
-    </div>
   </div>
 </div>
 <?php include APP_ROOT.'/views/layouts/footer.php'; ?>
